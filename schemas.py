@@ -41,13 +41,15 @@ class ProductModel(BaseModel):
     name: str
     description: str
     price: float    
-    category_id: Optional[int]
+    category_id: int
 
 
 class OrderModel(BaseModel):
     id: Optional[int]
     user_id: int
     product_id: int
+    count: int
+    order_status: str
 
-
-
+class UserOrder(BaseModel):
+    username: str

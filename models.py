@@ -41,9 +41,16 @@ class Product(Base):
 
 class Order(Base):
     __tablename__ = 'orders'
+    OrderChoices = (
+        ("PENDING", "pending"),
+        ("TRANSIT", 'transit'),
+        ("DELIVERED", "delivered")
+    )
 
     id = Column(Integer, primary_key=True)
     user_id = Column(Integer, ForeignKey('users.id'))
     product_id = Column(Integer, ForeignKey('product.id'))
+    count = Column(Integer)
+    order_status = Column(ChoiceType(choices=OrderChoices), default="PENDING")
     users = relationship('User', back_populates='orders')
     product = relationship('Product', back_populates='orders')
