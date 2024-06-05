@@ -5,7 +5,6 @@ from fastapi.encoders import jsonable_encoder
 from database import session, ENGINE
 
 session = session(bind=ENGINE)
-
 order_router = APIRouter(prefix="/orders")
 
 @order_router.get('/')
@@ -196,6 +195,4 @@ async def get_user_orders(user_order: UserOrder):
                     "total_price": total_balance
                 }
             }
-
             return jsonable_encoder(data)
-
